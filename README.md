@@ -1,7 +1,8 @@
 
 # Welcome to your CDK Python project!
 
-This is a blank project for Python development with CDK.
+This is a Python devloped by me in orsder to create an automated flow using web-scraping
+and storeing it to RDS with CDK.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 

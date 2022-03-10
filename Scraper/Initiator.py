@@ -92,7 +92,7 @@ def Scraper(base_url):
                 current_price = result.find('span', {'class': 'a-price-whole'}).text
                 actual_price = result.find('span', {'class': 'a-price a-text-price'}).text
                 actual_price = re.sub("^₹.*₹", "_", actual_price).strip("_")
-                product_url = 'https://amazon.com' + result.h2.a['href']
+                product_url = 'https://amazon.in' + result.h2.a['href']
                 items.append([product_name, rating, total_rating_count, current_price, actual_price, product_url])
             except AttributeError:
                 continue

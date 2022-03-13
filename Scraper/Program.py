@@ -7,7 +7,7 @@ import Initiator
 import time
 
 
-dict1=Initiator.dict1
+dict1 = Initiator.dict1
 mydb = mysql.connector.connect(
     host=dict1['Endpoint'],
     user="vitaproject",
@@ -17,6 +17,8 @@ mydb = mysql.connector.connect(
 
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0',
            'Accept-Language': 'en-US, en;q=0.5'}
+
+counter = 0  # Global counter to count submitted records
 
 
 def stream_records(items):
@@ -37,7 +39,7 @@ def stream_records(items):
         print('Message sent #' + str(counter))
 
 
-def Scraper(base_url):
+def scraper(base_url):
     total_pages = 1
     next_page = "Next"
     while next_page != "":
@@ -89,4 +91,4 @@ def itemlist(search_list):
     for i in search_list:
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
-        Scraper(base_url)
+        scraper(base_url)

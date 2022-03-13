@@ -1,10 +1,7 @@
 import boto3
-
 import time
 import mysql.connector
 import Program
-
-
 
 client = boto3.client('rds', region_name='us-east-1')
 response = client.describe_db_instances()
@@ -27,18 +24,8 @@ create_table = mydb.cursor()
 create_table.execute("""CREATE TABLE IF NOT EXISTS amazon_products3(Product_name VARCHAR(255),Rating VARCHAR(255),
 Total_rating_count int,Discounted_price int,Original_price VARCHAR(20),Product_url VARCHAR(500),Time VARCHAR(20))""")
 
-
-
-
-
 # search_query = 'iphone'.replace(' ','+')
 # base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
-
-
-counter = 0  # Global counter to count submitted records
-
-
-
 
 if __name__ == '__main__':
 
@@ -52,9 +39,9 @@ if __name__ == '__main__':
         Program.itemlist(list1) # calling amazon code
         print("Amazon Updated")
         print("Iteration Complete")
-        for i in range(1, 61):
+        for minute in range(1, 61):
             time.sleep(60)  # Delay for 1 minute (60 seconds)
-            print(f"{i}minute")
+            print(f"{minute}minute")
 
 
 

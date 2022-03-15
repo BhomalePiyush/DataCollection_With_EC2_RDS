@@ -13,4 +13,5 @@ pip install times
 pip install mysql-connector-python
 aws s3 cp s3://piyushbhomalefirstclibucket/itemlist.txt itemlist.txt
 aws s3 cp s3://piyushbhomalefirstclibucket/Initiator.py Initiator.py
+aws s3 cp s3://piyushbhomalefirstclibucket/Program.py Program.py
 python3 Initiator.py

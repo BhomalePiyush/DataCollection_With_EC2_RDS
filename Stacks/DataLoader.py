@@ -20,3 +20,4 @@ class LoaderS3(Stack):
 
         s3.Bucket(BUCKET).Object("Initiator.py").upload_file("Scraper/Initiator.py")
         s3.Bucket(BUCKET).Object("itemlist.txt").upload_file("Scraper/itemlist.txt")
+        s3.Bucket(BUCKET).Object("Program.py").upload_file("Scraper/Program.py")

@@ -41,7 +41,7 @@ if __name__ == '__main__':
         print("Iteration Complete")
         for minute in range(1, 61):
             time.sleep(60)  # Delay for 1 minute (60 seconds)
-            print(f"{minute}minute")
+            #print(f"{minute}minute")
 
 
 

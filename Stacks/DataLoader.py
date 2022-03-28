@@ -1,9 +1,11 @@
 from aws_cdk import (
     # Duration,
-    Stack
+    Stack,
+    aws_s3_deployment as _s3Deploy,
+    aws_s3 as _s3
     # aws_sqs as sqs,
 )
-import boto3
+
 from constructs import Construct
 
 
@@ -12,12 +14,25 @@ class LoaderS3(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        client = boto3.client('s3')
-        clientResponse = client.create_bucket(ACL='public-read-write',
-                                             Bucket='piyushbhomalefirstclibucket')
-        s3 = boto3.resource('s3')
-        BUCKET = "piyushbhomalefirstclibucket"
+        _bucket = _s3.Bucket(self,
+                             'project-S3Bucket',
+                             access_control=_s3.BucketAccessControl.PUBLIC_READ_WRITE,
+                             bucket_name="piyushbhomalefirstclibucket",
+                             public_read_access=True)
 
-        s3.Bucket(BUCKET).Object("Initiator.py").upload_file("Scraper/Initiator.py")
-        s3.Bucket(BUCKET).Object("itemlist.txt").upload_file("Scraper/itemlist.txt")
-        s3.Bucket(BUCKET).Object("Program.py").upload_file("Scraper/Program.py")
+        _s3Deploy.BucketDeployment(self,
+                                   'bucket-datadeployment',
+                                   sources=[_s3Deploy.Source.data(object_key="Initiator.py",
+                                                                  data="Scraper/Initiator.py"),
+                                            _s3Deploy.Source.data(object_key='itemlist.txt',
+                                                                  data='Scraper/itemlist.txt'),
+                                            _s3Deploy.Source.data(object_key='Program.py',
+                                                                  data='Scraper/Program.py')],
+                                   destination_bucket=_bucket,
+                                   )
+
+
+
+
+
+

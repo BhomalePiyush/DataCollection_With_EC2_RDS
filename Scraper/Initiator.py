@@ -5,7 +5,7 @@ import re
 import time
 import mysql.connector
 from transformers import pipeline
-from statistics import mean,mode
+from statistics import mean,mode, StatisticsError
 
 client = boto3.client('rds', region_name='us-east-1')
 response = client.describe_db_instances()
@@ -64,8 +64,10 @@ def sentiment_analysis(review_list):
         output = analysis(review)
         labels.append(output[0]['label'])
         score.append(output[0]['score'])
-
-    return mode(labels), mean(score)
+    try:
+        return mode(labels), mean(score)
+    except StatisticsError:
+        return 'POSITIVE', 0.1
 
 
 def sentiment(product_url):

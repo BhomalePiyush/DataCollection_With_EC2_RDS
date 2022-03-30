@@ -64,6 +64,7 @@ def sentiment_analysis(review_list):
         output = analysis(review)
         labels.append(output[0]['label'])
         score.append(output[0]['score'])
+
     return mode(labels), mean(score)
 
 

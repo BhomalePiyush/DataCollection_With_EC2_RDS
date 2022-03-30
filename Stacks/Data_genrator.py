@@ -23,7 +23,7 @@ class EC2(Stack):
             user_data = file.read()
         # ec2 instance creation
         bot = _ec2.Instance(self, "Instance1",
-                            instance_type=_ec2.InstanceType(instance_type_identifier="t2.micro"),
+                            instance_type=_ec2.InstanceType(instance_type_identifier="t2.medium"),
                             instance_name="multipart_experiment",
                             machine_image=_ec2.AmazonLinuxImage(
                                                                 generation=_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,

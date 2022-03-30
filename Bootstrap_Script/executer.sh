@@ -5,12 +5,7 @@ python3 get-pip.py
 pip install virtualenv
 virtualenv scrap
 source scrap/bin/activate
-pip install boto3
-pip install regex
-pip install beautifulsoup4
-pip install requests
-pip install times
-pip install mysql-connector-python
+pip install -r requirements.txt
 aws s3 cp s3://piyushbhomalefirstclibucket/itemlist.txt itemlist.txt
 aws s3 cp s3://piyushbhomalefirstclibucket/Initiator.py Initiator.py
 aws s3 cp s3://piyushbhomalefirstclibucket/Program.py Program.py

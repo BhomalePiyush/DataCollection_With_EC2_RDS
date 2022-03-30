@@ -26,8 +26,8 @@ class LoaderS3(Stack):
                                                                   data="Scraper/Initiator.py"),
                                             _s3Deploy.Source.data(object_key='itemlist.txt',
                                                                   data='Scraper/itemlist.txt'),
-                                            _s3Deploy.Source.data(object_key='Program.py',
-                                                                  data='Scraper/Program.py')],
+                                            _s3Deploy.Source.data(object_key='requirements.txt',
+                                                                  data='Scraper/requirements.txt')],
                                    destination_bucket=_bucket,
                                    )
 

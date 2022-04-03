@@ -10,4 +10,4 @@ pip install -r requirements.txt
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 aws s3 cp s3://piyushbhomalefirstclibucket/itemlist.txt itemlist.txt
 aws s3 cp s3://piyushbhomalefirstclibucket/Initiator.py Initiator.py
-python3 Initiator.py
+python Initiator.py

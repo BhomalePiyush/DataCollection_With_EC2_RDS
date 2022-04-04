@@ -31,20 +31,21 @@ class ECS(Stack):
         cluster = _ecs.Cluster(self,
                                "ecs-devops-project-cluster",
                                cluster_name="ecs-devops-project-cluster",
+                               enable_fargate_capacity_providers=True,
                                vpc=vpc)
 
-        auto_scaling_group = _autoscaling.AutoScalingGroup(self, "ASG",
-                                                           vpc=vpc,
-                                                           instance_type=_ec2.InstanceType("t2.micro"),
-                                                           machine_image=_ecs.EcsOptimizedImage.amazon_linux2(),
-                                                           min_capacity=1,
-                                                           max_capacity=5
-                                                           )
-
-        capacity_provider = _ecs.AsgCapacityProvider(self, "AsgCapacityProvider",
-                                                     auto_scaling_group=auto_scaling_group
-                                                    )
-        cluster.add_asg_capacity_provider(capacity_provider)
+        # auto_scaling_group = _autoscaling.AutoScalingGroup(self, "ASG",
+        #                                                    vpc=vpc,
+        #                                                    instance_type=_ec2.InstanceType("t2.micro"),
+        #                                                    machine_image=_ecs.EcsOptimizedImage.amazon_linux2(),
+        #                                                    min_capacity=1,
+        #                                                    max_capacity=5
+        #                                                    )
+        #
+        # capacity_provider = _ecs.AsgCapacityProvider(self, "AsgCapacityProvider",
+        #                                              auto_scaling_group=auto_scaling_group
+        #                                             )
+        # cluster.add_asg_capacity_provider(capacity_provider)
 
         execution_role = _iam.Role(self,
                                    "ecs-devops-project-execution-role",
@@ -52,20 +53,27 @@ class ECS(Stack):
                                    role_name="ecs-devops-project-execution-role")
         execution_role.add_to_policy(_iam.PolicyStatement(
             effect=_iam.Effect.ALLOW,
-            resources=["*"],
+            resources=["*",
+                       "arn:aws:ssm:us-east-1:993560847451:parameter/AccesskeyID",
+                       "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey",
+                       "arn:aws:kms:us-east-1:993560847451:key/a4389550-1d7a-4a2a-8172-a7e5af432e59"
+                       ],
             actions=[
                 "ecr:GetAuthorizationToken",
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
                 "logs:CreateLogStream",
-                "logs:PutLogEvents"
+                "logs:PutLogEvents",
+                "ssm:GetParameters",
+                "secretsmanager:GetSecretValue",
+                "kms:Decrypt"
             ]
         ))
-        execution_role.add_managed_policy( _iam.ManagedPolicy.from_aws_managed_policy_name(
-                "AmazonRDSFullAccess"
-            )
-        )
+
+        #execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonRDSFullAccess"))
+
+        #execution_role.add_managed_policy(_iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess"))
 
         task_definition = _ecs.FargateTaskDefinition(self,
                                                      "ecs-devops-project-task-definition",
@@ -81,4 +89,12 @@ class ECS(Stack):
                                       "ecs-devops-project-service",
                                       cluster=cluster,
                                       task_definition=task_definition,
-                                      service_name="ecs-devops-project-service")
+                                      service_name="ecs-devops-project-service",
+                                      assign_public_ip=True,
+                                      min_healthy_percent=100,
+                                      security_groups=[_ec2.SecurityGroup.from_security_group_id(self, "SG",
+                                                                                                 "sg-09b290e6a8740cbd8",
+                                                                                                 mutable=False
+                                                                                                 )]
+
+                                      )

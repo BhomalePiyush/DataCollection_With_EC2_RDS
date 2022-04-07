@@ -28,4 +28,4 @@ jobs:
       - name: Run a multi-line script
         run: |
              chmod +x ./.github/workflows/cmd.sh
-             sh cmd.sh
+             sh ./.github/workflows/cmd.sh

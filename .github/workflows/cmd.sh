@@ -16,7 +16,7 @@ sudo pip3 install awscli
 aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID_P}}
 aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY_P}}
 aws configure set region ${{secrets.AWS_DEFAULT_REGION}}
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 cdk ls
 cdk synth
 cdk deploy ecsstack --require-approval=never

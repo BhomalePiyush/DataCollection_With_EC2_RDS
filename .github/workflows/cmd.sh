@@ -13,9 +13,9 @@ python3 -m venv .venv
 source .venv/bin/activate
 sudo pip3 install aws-cdk.cdk
 sudo pip3 install awscli
-aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID_P}}
-aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY_P}}
-aws configure set region ${{secrets.AWS_DEFAULT_REGION}}
+aws configure set aws_access_key_id ACCESS_KEY_ID
+aws configure set aws_secret_access_key AWS_SECRET_ACCESS_KEY
+aws configure set region AWS_DEFAULT_REGION
 sudo pip3 install -r requirements.txt
 cdk ls
 cdk synth

@@ -1,8 +1,8 @@
 
 # Welcome to your CDK Python project!
 
-This is a Python devloped by me in orsder to create an automated flow using web-scraping
-and storeing it to RDS with CDK.
+This is a Python project developed by me in order to create an automated flow using web-scraping and storing it to 
+RDS with CDK.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
@@ -55,5 +55,10 @@ command.
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
+
+## Steps to follow
+* Deploy AWS-CDK Stack using following GitHub Repository 
+ https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git
+* Run GitHub workflow after The Stack is completely Deployed.
 
 Enjoy!

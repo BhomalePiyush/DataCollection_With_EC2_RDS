@@ -56,6 +56,7 @@ class ECS(Stack):
             resources=["*",
                        "arn:aws:ssm:us-east-1:993560847451:parameter/AccesskeyID",
                        "arn:aws:ssm:us-east-1:993560847451:parameter/Secretaccesskey",
+                       "arn:aws:ssm:us-east-1:993560847451:parameter/databasepassword",
                        "arn:aws:kms:us-east-1:993560847451:key/a4389550-1d7a-4a2a-8172-a7e5af432e59"
                        ],
             actions=[

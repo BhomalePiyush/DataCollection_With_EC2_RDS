@@ -18,7 +18,7 @@ class LoaderS3(Stack):
             _bucket = _s3.Bucket(self,
                                  'project-S3Bucket',
                                  access_control=_s3.BucketAccessControl.PUBLIC_READ_WRITE,
-                                 bucket_name="piyushbhomalefirstclibucket",
+                                 bucket_name="prod-piyushbhomalefirstclibucket",
                                  public_read_access=True,
                                  removal_policy=RemovalPolicy.RETAIN,
                                  versioned=True)

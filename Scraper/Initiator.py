@@ -143,7 +143,7 @@ def itemlist(search_list):
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
         scraper(base_url)
-
+print(itemlist.__doc__)
 
 if __name__ == '__main__':
 

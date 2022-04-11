@@ -152,7 +152,7 @@ if __name__ == '__main__':
     for i in lst:
         list1.append(i.strip())
 
-    print(type(list1), "Program Insialized")
+    print(type(list1), "Program Initialized")
     for i in range(1):
         itemlist(list1) # calling amazon code
         print("Amazon Updated")

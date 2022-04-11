@@ -85,6 +85,10 @@ def sentiment(product_url):
 
 
 def scraper(base_url):
+    """
+    This scrapper function scrapping the product name, rating,actual price,discounted price,product url
+     from the e-commerce website
+    """
     total_pages = 1
     next_page = "Next"
     while next_page != "":

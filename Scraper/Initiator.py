@@ -38,7 +38,6 @@ counter = 0  # Global counter to count submitted records
 
 
 def stream_records(items):
-    """stream_records function is pushing and counting the records """
     global mydb
     insert_in = mydb.cursor()
     for i in range(len(items)):
@@ -55,10 +54,10 @@ def stream_records(items):
         counter = counter + 1
 
         print('Message sent #' + str(counter))
-print(stream_records.__doc__)
 
 
 def sentiment_analysis(review_list):
+    """This sentiment_analysis function is written to find sentiments and score"""
     analysis = pipeline("sentiment-analysis", model="siebert/sentiment-roberta-large-english")
     labels = list()
     score = list()

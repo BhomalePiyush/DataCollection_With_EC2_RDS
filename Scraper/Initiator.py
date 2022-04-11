@@ -83,6 +83,7 @@ def sentiment(product_url):
     except AttributeError:
         print('failed to get sentiments')
     return sentiment_analysis(reviews)
+print(sentiment.__doc__)
 
 
 def scraper(base_url):

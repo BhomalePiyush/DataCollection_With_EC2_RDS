@@ -61,5 +61,5 @@ command.
  https://github.com/BhomalePiyush/DataCollection_With_EC2_RDS.git
 * Run GitHub workflow after The Stack is completely Deployed.
 
-![Screenshot (95)](C:\Users\Admin\Desktop\DataCollection_With_EC2_RDS.png)
+![](C:\Users\Admin\Desktop\DataCollection_With_EC2_RDS.png)
 Enjoy!

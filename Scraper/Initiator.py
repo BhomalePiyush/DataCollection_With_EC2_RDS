@@ -38,6 +38,7 @@ counter = 0  # Global counter to count submitted records
 
 
 def stream_records(items):
+    """stream_records function is pushing and counting the records """
     global mydb
     insert_in = mydb.cursor()
     for i in range(len(items)):

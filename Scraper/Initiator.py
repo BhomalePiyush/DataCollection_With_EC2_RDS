@@ -69,7 +69,7 @@ def sentiment_analysis(review_list):
         return mode(labels), mean(score)
     except StatisticsError:
         return 'POSITIVE', 0.1
-
+print(sentiment_analysis.__doc__)
 
 def sentiment(product_url):
     try:

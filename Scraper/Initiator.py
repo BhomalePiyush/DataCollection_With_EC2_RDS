@@ -57,6 +57,7 @@ def stream_records(items):
 
 
 def sentiment_analysis(review_list):
+    """This sentiment_analysis function is written to find sentiments and score"""
     analysis = pipeline("sentiment-analysis", model="siebert/sentiment-roberta-large-english")
     labels = list()
     score = list()
@@ -68,9 +69,10 @@ def sentiment_analysis(review_list):
         return mode(labels), mean(score)
     except StatisticsError:
         return 'POSITIVE', 0.1
-
+print(sentiment_analysis.__doc__)
 
 def sentiment(product_url):
+    """"sentiment function is written for scrapping reviews  from the product url"""
     try:
         rsp = requests.get(product_url,headers=headers)
         rsp_soup = BeautifulSoup(rsp.content, 'html.parser')
@@ -81,9 +83,14 @@ def sentiment(product_url):
     except AttributeError:
         print('failed to get sentiments')
     return sentiment_analysis(reviews)
+print(sentiment.__doc__)
 
 
 def scraper(base_url):
+    """
+    This scrapper function scrapping the product name, rating,actual price,discounted price,product url
+     from the e-commerce website
+    """
     total_pages = 1
     next_page = "Next"
     while next_page != "":
@@ -127,16 +134,16 @@ def scraper(base_url):
             except AttributeError:
                 continue
         stream_records(items)  # calling function to push records to kinesis streams
-
+print(scraper.__doc__)
 
 
 def itemlist(search_list):
-
+    """itemlist function is taking items one by one from itemlist.txt"""
     for i in search_list:
         search_query = i.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}'.format(search_query)
         scraper(base_url)
-
+print(itemlist.__doc__)
 
 if __name__ == '__main__':
 
@@ -145,7 +152,7 @@ if __name__ == '__main__':
     for i in lst:
         list1.append(i.strip())
 
-    print(type(list1), "Program Insialized")
+    print(type(list1), "Program Initialized")
     for i in range(1):
         itemlist(list1) # calling amazon code
         print("Amazon Updated")

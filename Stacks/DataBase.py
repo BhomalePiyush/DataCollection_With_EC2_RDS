@@ -32,7 +32,7 @@ class Database(Stack):
                                   "mydatabase",
                                   vpc=vpc,
                                   engine=engine,
-                                  allocated_storage=20,                # this is minimun allocated
+                                  allocated_storage=20,                # this is minimum allocated
                                   max_allocated_storage=21,            # Minimum Allocated
                                   database_name="ProjectDatabase",     # Database Name
                                   instance_identifier="projectdatabase",
